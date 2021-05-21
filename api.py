@@ -15,9 +15,7 @@ from src import endpoints
 
 app = FastAPI(title="API")
 
-origins = [
-    "http://localhost:8080"
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
