@@ -5,31 +5,17 @@ Author: vgolubev
 Module describe orm models in application.  
 """
 
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-# change this models for yours 
 
-class User(Base):
-    __tablename__ = "users"
+# change this models for yours
 
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
-    is_active = Column(Boolean, default=True)
+class Money(Base):
+    __tablename__ = 'Money'
 
-    items = relationship("Item", back_populates="owner")
-
-
-class Item(Base):
-    __tablename__ = "items"
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String, index=True)
-    owner_id = Column(Integer, ForeignKey("users.id"))
-
-    owner = relationship("User", back_populates="items")
+    id = Column(Integer, primary_key=True)
+    digits = Column(Float)
+    currency = Column(String(10))
